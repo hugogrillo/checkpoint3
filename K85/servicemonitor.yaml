@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: unifiap-api-sm
+  namespace: unifiappay
+  labels:
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: unifiap-api
+  endpoints:
+  - port: http
+    path: /metrics
+    interval: 15s
+    scheme: http
+  namespaceSelector:
+    matchNames:
+    - unifiappay
+
+# Note: ServiceMonitor is a CRD provided by the Prometheus Operator (kube-prometheus-stack).
+# Install the operator/helm chart before applying this manifest.

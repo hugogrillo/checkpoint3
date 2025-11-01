@@ -1,0 +1,43 @@
+version: '3.8'
+
+networks:
+  unifiap_net:
+    driver: bridge
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: unifiap_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: unifiap
+      POSTGRES_USER: unifiap
+      POSTGRES_PASSWORD: unifiap-pass
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - unifiap_net
+
+  api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: unifiap-pay-api:latest
+    container_name: unifiap_api
+    restart: unless-stopped
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_USER: unifiap
+      POSTGRES_PASSWORD: unifiap-pass
+      POSTGRES_DB: unifiap
+      PORT: 3000
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    networks:
+      - unifiap_net
+
+volumes:
+  db-data:
+    driver: local

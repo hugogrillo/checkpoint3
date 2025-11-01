@@ -1,0 +1,16 @@
+{
+  "name": "unifiap-pay-api",
+  "version": "0.1.0",
+  "description": "UniFIAP Pay - sample payments API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.18.2",
+    "pg": "^8.11.0",
+    "uuid": "^9.0.0",
+    "prom-client": "^14.0.0"
+  }
+}
