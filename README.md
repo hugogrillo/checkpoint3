@@ -170,7 +170,7 @@ curl -X GET http://localhost:3000/health
 curl -X POST http://localhost:3000/payments -H "Content-Type: application/json" -d '{"amount":100.50,"pix_key":"abc@pix"}'
 curl -X GET http://localhost:3000/payments
 ```
-![pagamento](checkpoint3/images/pagamentos.png)
+![pagamento](images/pagamentos.png)
 
 
 4. Logs e evidências: capture `docker logs unifiap_api` e `docker logs unifiap_db` e faça prints.
@@ -249,7 +249,6 @@ curl http://localhost:3000/health
 
 ## 5) Testes e validação
 
-![test_pix](checkpoint3/images/test_pix.png)
 
 - Teste funcional: POST /payments e GET /payments (veja acima).
 - Verifique persistência: apagar pod do Postgres e ver se dados permanecem (depende do hostPath).
@@ -287,7 +286,7 @@ Depois de configurar, qualquer push em `main` acionará o workflow.
 ```powershell
 kubectl apply -f K85/servicemonitor.yaml
 ```
-![metricas](CHECKPOINT3/images/metricas.png)
+![metricas](images/metricas.png)
 
 2. A API já expõe `/metrics`. Você pode criar um dashboard no Grafana ou importar dashboards prontos. Use `metrics` do namespace `unifiappay` como fonte.
 
